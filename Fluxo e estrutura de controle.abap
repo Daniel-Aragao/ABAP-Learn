@@ -79,4 +79,11 @@ START-OF-SELECTION.
     cl_demo_output=>write('Not INITIAL').
   ENDIF.
 
+  DATA(lv_sobrenome) = COND string( WHEN p_nome = 'DANIEL' THEN 'Aragão' WHEN p_nome <> 'DANIEL' THEN 'Outro').
+  DATA(lv_letra) = SWITCH string( p_letra WHEN 'D' THEN 'D' WHEN 'O' THEN 'O' ).
+
+
+  cl_demo_output=>write( lv_sobrenome ).
+  cl_demo_output=>write( lv_letra ).
+
   cl_demo_output=>display( ).
