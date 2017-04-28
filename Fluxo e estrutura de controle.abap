@@ -13,7 +13,7 @@ TABLES : kna1.
 SELECTION-SCREEN: BEGIN OF BLOCK b1 WITH FRAME TITLE text-001.
 PARAMETERS: p_letra TYPE c,
             p_nome  TYPE string,
-            p_data TYPE d OBLIGATORY,
+            p_data  TYPE d OBLIGATORY,
 *            p_data  TYPE kna1-kunnr OBLIGATORY,
             p_ativo AS CHECKBOX.
 SELECTION-SCREEN: END OF BLOCK b1.
@@ -42,16 +42,41 @@ LOAD-OF-PROGRAM.
 
 AT SELECTION-SCREEN.
 *  cl_demo_output=>display('select').
-  MESSAGE 'testando warning' TYPE 'W'.
-  MESSAGE 'testando warning' TYPE 'W' DISPLAY LIKE 'I'.
+*  MESSAGE 'testando warning' TYPE 'W'.
+*  MESSAGE 'testando warning' TYPE 'W' DISPLAY LIKE 'I'.
 
 AT SELECTION-SCREEN OUTPUT.
 *  cl_demo_output=>display('output').
 
 START-OF-SELECTION.
-  cl_demo_output=>write( p_nome ).
-  cl_demo_output=>write( p_data ).
-  cl_demo_output=>write( p_homem ).
-  cl_demo_output=>write( p_mulher ).
-  cl_demo_output=>write( s_cida ).
+*  cl_demo_output=>write( p_nome ).
+*  cl_demo_output=>write( p_data ).
+*  cl_demo_output=>write( p_homem ).
+*  cl_demo_output=>write( p_mulher ).
+*  cl_demo_output=>write( s_cida ).
+*  cl_demo_output=>display( ).
+
+  DATA: lv_bool TYPE abap_bool.
+  lv_bool = p_ativo.
+
+  cl_demo_output=>write( lv_bool ).
+
+  IF lv_bool = abap_true.
+    cl_demo_output=>write('Ativo').
+  ELSE.
+    cl_demo_output=>write('Not Ativo').
+  ENDIF.
+
+  IF p_data BETWEEN '19960103' AND '19960105'.
+    cl_demo_output=>write('Between').
+  ELSE.
+    cl_demo_output=>write('Not Between').
+  ENDIF.
+
+  IF p_nome IS  INITIAL .
+    cl_demo_output=>write('IS INITIAL').
+  ELSE.
+    cl_demo_output=>write('Not INITIAL').
+  ENDIF.
+
   cl_demo_output=>display( ).
