@@ -36,7 +36,7 @@ FORM qual_maior USING VALUE(p_num1) TYPE i VALUE(p_num2) TYPE i CHANGING p_texto
 ENDFORM.
 
 FORM qual_maior_cond USING VALUE(p_num1) TYPE i VALUE(p_num2) TYPE i CHANGING p_texto TYPE string.
-  p_texto = COND string( WHEN p_num1 > p_num2 THEN |{ p_num1 } e maior que { p_num2 }| WHEN p_num1 < p_num2 THEN |{ p_num2 } e maior que { p_num1 }| WHEN p_num1 = p_num2 THEN |{ p_num1 } e igual a { p_num2 }| ).
+  p_texto = COND string( WHEN p_num1 > p_num2 THEN |{ p_num1 } e maior que { p_num2 }| WHEN p_num1 < p_num2 THEN |{ p_num2 } e maior que { p_num1 }| ELSE |{ p_num1 } e igual a { p_num2 }| ).
 ENDFORM.
 
 PARAMETERS: num1 TYPE i,
