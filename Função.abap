@@ -25,18 +25,21 @@ TEXTO_LEN = strlen( I_TEXTO ).
 
 ENDFUNCTION.
 
-FUNCTION Y_CURSO_FUNCTION_DANIEL3.
+FUNCTION y_curso_function_daniel3.
 *"----------------------------------------------------------------------
 *"*"Interface local:
 *"  IMPORTING
-*"     REFERENCE(I_DATA) TYPE  DATE
 *"     REFERENCE(I_DIAS) TYPE  I
+*"     REFERENCE(I_DAT) TYPE  D
 *"  EXPORTING
-*"     REFERENCE(E_VENCIMENTO) TYPE  DATE
+*"     REFERENCE(E_VENCIMENTO) TYPE  D
 *"----------------------------------------------------------------------
 
-E_VENCIMENTO = I_DATA + I_DIAS.
+  e_vencimento = i_dat + i_dias.
 
+  IF e_vencimento < sy-datum.
+    e_vencimento = sy-datum.
+  ENDIF.
 
 ENDFUNCTION.
 
@@ -51,7 +54,7 @@ ENDFUNCTION.
 REPORT ycurso_execfunc.
 
 DATA: len  TYPE i,
-      data TYPE date.
+      data TYPE d.
 
 CALL FUNCTION 'Y_CURSO_FUNCTION_DANIEL'
   EXPORTING
@@ -65,10 +68,12 @@ CALL FUNCTION 'Y_CURSO_FUNCTION_DANIEL2'
 
 CALL FUNCTION 'Y_CURSO_FUNCTION_DANIEL3'
   EXPORTING
-    i_data       = '19960104'
-    i_dias       = 40
-  IMPORTING
-    e_vencimento = data.
+    i_dias             = 40
+    i_dat             = '040517'
+ IMPORTING
+   E_VENCIMENTO       = data
+          .
+
 
 
 cl_demo_output=>write( len ).
