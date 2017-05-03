@@ -35,14 +35,23 @@ wa_familia-pai = pai.
 wa_familia-mae = mae.
 *data == var and types == type
 
-
 cl_demo_output=>write( pai ).
 cl_demo_output=>write( mae ).
 cl_demo_output=>write( wa_familia ).
 
-
 DATA:mais_velho TYPE ty_pessoa.
 PERFORM verif_fa USING wa_familia CHANGING mais_velho.
+cl_demo_output=>write( mais_velho ).
+
+data: criandopessoa type ty_pessoa,
+      wa_familia2 like wa_familia.
+
+criandopessoa = value #( nome = 'daniel' idade = 18 ).
+wa_familia2 = value #( sobrenome = 'aragão' qtd_membros = 1 ).
+wa_familia2-pai = criandopessoa.
+wa_familia2-mae = mae.
+
+PERFORM verif_fa USING wa_familia2 CHANGING mais_velho.
 cl_demo_output=>write( mais_velho ).
 
 cl_demo_output=>display( ).
