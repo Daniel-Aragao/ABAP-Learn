@@ -14,7 +14,8 @@ TYPES: BEGIN OF ty_contato,
        END OF ty_contato.
 
 PARAMETERS: nome     TYPE string LOWER CASE,
-            telefone TYPE string.
+            telefone TYPE string,
+            index    TYPE sy-tabix OBLIGATORY.
 
 START-OF-SELECTION.
   DATA: contato1  TYPE ty_contato,
@@ -41,6 +42,14 @@ START-OF-SELECTION.
   cl_demo_output=>write( it_tabela ).
 
   SORT it_tabela BY nome. " caso a tabela seja standard
+
+  cl_demo_output=>write( it_tabela ).
+
+  MODIFY it_tabela FROM contato2 INDEX index.
+
+  cl_demo_output=>write( it_tabela ).
+
+  DELETE it_tabela INDEX index.
 
   cl_demo_output=>write( it_tabela ).
 
