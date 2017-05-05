@@ -50,7 +50,7 @@ START-OF-SELECTION.
   cl_demo_output=>write( 'Modify' ).
   cl_demo_output=>write( it_tabela ).
 
-  READ TABLE it_tabela INTO contato2 WITH KEY telefone = '(85) 9 97597784'.
+  READ TABLE it_tabela INTO contato2 WITH KEY telefone = '(85) 9 99747582'.
   DATA(lv_indice) = sy-tabix.
 
   DELETE it_tabela INDEX 3.
@@ -63,10 +63,10 @@ START-OF-SELECTION.
   cl_demo_output=>write( contato2 ).
   
   
-*  cl_demo_output=>write( 'Recolocando o contato com telefone (85) 9 97597784 no local de origem' ).
-*  cl_demo_output=>write( lv_indice ).
-*  MODIFY it_tabela FROM contato2 INDEX lv_indice.
-*  cl_demo_output=>write( it_tabela ).
+  cl_demo_output=>write( 'Recolocando o contato com telefone (85) 9 97597784 no local de origem' ).
+  cl_demo_output=>write( index ).
+  MODIFY it_tabela FROM contato2 INDEX index.
+  cl_demo_output=>write( it_tabela ).
   
   cl_demo_output=>write( 'Loop at' ).
   LOOP AT it_tabela INTO contato2.
